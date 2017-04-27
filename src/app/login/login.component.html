@@ -1,0 +1,23 @@
+<div class="card">
+  <md-card class="example-card">
+    <md-card-content>
+      <div *ngIf="!user">Use your Google account to login.</div>
+      <div *ngIf="user">Hello {{user.auth.displayName}}</div>
+
+      <div>
+        <p *ngIf="user" style="width: 64px; height: 64px; background-color: #CCC; border-radius: 64px; z-index: 9999; text-align: center;margin: 0 auto; margin-top: 16px;">
+          <img src="{{user.auth.photoURL}}" height="64" width="64" style="z-index: 1; border-radius: 64px; text-align: center;" />
+        </p>
+        <p *ngIf="!user">
+          <i class="fa fa-user-circle-o fa-5x" style="margin-top: 8px; margin-left: 10px;"></i>
+        </p>
+      </div>
+    </md-card-content>
+
+    <md-card-actions>
+      <button *ngIf="!user" md-button (click)="login()">Login</button>
+      <button *ngIf="!user" md-button (click)="create()">Create</button>
+      <button *ngIf="user" md-button (click)="logout()">Logout</button>
+    </md-card-actions>
+  </md-card>
+</div>
