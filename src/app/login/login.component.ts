@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire, AngularFireAuth, FirebaseAuthState } from 'angularfire2';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app'
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: FirebaseAuthState = null;
+  user: Observable<firebase.User>;
 
-  constructor(public af: AngularFire, private route: ActivatedRoute) {
-
+  constructor(public afAuth: AngularFireAuth, private route: ActivatedRoute) {
+    this.user = afAuth.authState;
   }
 
   ngOnInit(): void {
@@ -21,16 +22,16 @@ export class LoginComponent implements OnInit {
   };
 
   login() {
-    this.af.auth.login();
+    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
   create() {
     //this.af.auth.createUser({ email: '', password: '' });
-    this.af.auth.login();
+    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
   logout() {
-    this.af.auth.logout();
+    this.afAuth.auth.signOut();
     this.user = null;
   }
 }

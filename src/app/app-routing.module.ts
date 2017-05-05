@@ -4,7 +4,7 @@ import { AppResolver } from './app-resolver.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CreateComponent } from './login/create.component';
-import { AngularFire, AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent },

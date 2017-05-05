@@ -4,7 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AngularFire, AngularFireModule, AuthProviders, AuthMethods, AngularFireAuth } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { MaterialModule } from '@angular/material';
 import { AppMaterialModule } from './app-material.module';
@@ -26,11 +27,6 @@ export const firebaseConfig = {
   messagingSenderId: '107791740117'
 };
 
-const myFirebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
-};
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,12 +38,12 @@ const myFirebaseAuthConfig = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
     BrowserAnimationsModule,
     MaterialModule.forRoot(),
     AppRoutingModule,
   ],
   bootstrap: [AppComponent],
-  providers: [AppResolver, AngularFire, AngularFireAuth]
+  providers: [AppResolver, AngularFireAuth]
 })
 export class AppModule { }
